@@ -54,7 +54,6 @@
 		
 		private function roles():void
 		{
-			trace("inroles")
 			checker = 0;
 			for (var i:int = 0; i < second.length; i++)
 			{
@@ -99,7 +98,6 @@
 			if (checker == 2)
 			{
 				counter++;
-				trace("next")
 				roles();
 				return;
 			}
@@ -123,7 +121,6 @@
 			if (checker == 2)
 			{
 				counter++;
-				trace("next")
 				roles();
 				return;
 			}
@@ -137,7 +134,6 @@
 				if (checker == 1)
 				{
 					counter++;
-					trace("next")
 					roles();
 					return;
 				}

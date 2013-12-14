@@ -31,8 +31,6 @@
 		
 		private function twoPointsJoin():void
 		{
-			//second.removeEventListener(MouseEvent.MOUSE_DOWN,lineFunc )
-			//TweenMax.killTweensOf(second);
 			var canvas:Shape = new Shape();
 			canvas.graphics.lineStyle(2, 0x2D3258);
 			second.scaleX = 1;
