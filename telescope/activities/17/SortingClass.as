@@ -60,7 +60,6 @@
 		
 		private function destroy(event:Event):void
 		{
-			try{
 			removeEventListener(Event.REMOVED_FROM_STAGE, destroy);
 			TweenMax.killTweensOf(zgarbi);
 			TweenMax.killTweensOf(textFrame);
@@ -97,11 +96,6 @@
 			}
 			
 			TweenMax.killAll();
-			}
-			catch (e:Error)
-			{
-					
-			}
 		}
 		
 		private function init(event:Event):void
@@ -112,7 +106,7 @@
 		
 		private function addZgarbi():void
 		{
-			setTimeout(sendData, 10);
+			setTimeout(sendData, 5);
 			
 			zgarbiObjects = new Level2Objects();
 			
@@ -170,7 +164,6 @@
 		
 		private function startThirdLevel():void
 		{
-			
 			///////////////
 			version0 = new FirstVersion();
 			version1 = new SecondVersion();
@@ -193,12 +186,16 @@
 			
 			addChild(allText);
 			//startTask();
+			
+			return
 			soundControl1 = new SoundControl();
 			addChild(soundControl1);
 			TweenMax.to(allText.text1, 1, {tint: 0xff0000});
-			soundControl1.loadSound("17_1.mp3", 1);
+			soundControl1.loadSound("1_1.mp3", 1);
 			soundControl1.soundPlay();
 			setTimeout(nextText, 3000);
+			
+			
 		
 		}
 		
@@ -210,7 +207,7 @@
 			TweenMax.to(allText.text2, 1, {tint: 0xff0000});
 			soundControl2 = new SoundControl();
 			addChild(soundControl2);
-			soundControl2.loadSound("17_2.mp3", 1);
+			soundControl2.loadSound("1_2.mp3", 1);
 			soundControl2.soundPlay();
 			setTimeout(nextText1, 6000);
 		}
@@ -223,7 +220,7 @@
 			TweenMax.to(allText.text3, 1, {tint: 0xff0000});
 			soundControl3 = new SoundControl();
 			addChild(soundControl3);
-			soundControl3.loadSound("17_3.mp3", 1);
+			soundControl3.loadSound("1_3.mp3", 1);
 			soundControl3.soundPlay();
 			setTimeout(nextText2, 4000);
 		}
@@ -236,10 +233,11 @@
 			TweenMax.to(allText.text4, 1, {tint: 0xff0000});
 			soundControl4 = new SoundControl();
 			addChild(soundControl4);
-			soundControl4.loadSound("17_4.mp3", 1);
+			soundControl4.loadSound("1_4.mp3", 1);
 			soundControl4.soundPlay();
 			setTimeout(nextText3, 6000);
 		}
+		
 		private function nextText3():void
 		{
 			removeChild(soundControl4);
@@ -248,7 +246,7 @@
 			TweenMax.to(allText.text5, 1, {tint: 0xff0000});
 			soundControl5 = new SoundControl();
 			addChild(soundControl5);
-			soundControl5.loadSound("17_5.mp3", 1);
+			soundControl5.loadSound("1_5.mp3", 1);
 			soundControl5.soundPlay();
 			setTimeout(startTask, 8000);
 		}
@@ -258,6 +256,7 @@
 			removeChild(soundControl5);
 			soundControl5 = null;
 			removeChild(allText);
+			dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleTrue"));
 			timerC = new TimerClass();
 			addChild(timerC);
 			timerC.x = _stageWidth - timerC.height;
@@ -265,24 +264,69 @@
 			addShuffledArray();
 		}
 		
+		//private function ShuffleArray():void
+		//{
+			//randomPlus = new RandomPlus(0, 2);
+			//
+			//for (var i:int = 0; i < versionsArray.length; i++)
+			//{
+				//randomIndex = randomPlus.getNum();
+				//shuffledArray[randomIndex] = versionsArray[i];
+			//}
+			//
+		//}
+		
+		function shuffle(array) {
+			var counter = array.length, temp, index;
+
+			// While there are elements in the array
+			while (counter > 0) {
+				// Pick a random index
+				index = Math.floor(Math.random() * counter);
+
+				// Decrease counter by 1
+				counter--;
+
+				// And swap the last element with it
+				temp = array[counter];
+				array[counter] = array[index];
+				array[index] = temp;
+			}
+
+			return array;
+		}
+		
+		//function checkContent($needles:Array, $haystack:Array):Boolean
+		//{
+			//for each (var item:Object in $needles)
+			//{
+				//if ($haystack.indexOf(item) == -1)
+					//return false;
+			//}
+			//return true;
+		//}
+		//
 		private function addShuffledArray():void
 		{
-			var checkArray:Array = new Array();
-			var check:String = new String();
-			randomPlus = new RandomPlus(0, 2);
 			
-			for (var i:int = 0; i < versionsArray.length; i++)
-			{
-				randomIndex = randomPlus.getNum();
-				shuffledArray[randomIndex] = versionsArray[i];
-				checkArray[i] = randomIndex;	
-				
-				for (var k:int = 0; k < checkArray.length; k++) 
-				{
-					check += checkArray[k];
-				}
-			}
+			shuffledArray = shuffle(versionsArray);
 			
+			//ShuffleArray();
+			//if (checkContent(versionsArray, shuffledArray))
+			//{
+				//trace("again");
+				//ShuffleArray();
+				//
+				//addShuffledArray();
+			//}
+			//else
+			//{
+				StartGame();
+			//}
+		
+		}
+		private function StartGame():void 
+		{
 			for (var t:int = 0; t < shuffledArray.length; t++)
 			{
 				TweenMax.to(shuffledArray[t], 0.25, {alpha: 1});
@@ -380,9 +424,10 @@
 			catch (err:Error)
 			{
 				
-			}		
+			}
 		}
-	
+		
+		
 	}
 
 }

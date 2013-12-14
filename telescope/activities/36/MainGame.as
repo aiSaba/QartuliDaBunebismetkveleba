@@ -112,75 +112,74 @@
 		private function init(event:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			addZgarbi();
+			//addZgarbi();
+			addTask();
 		}
 		
-		private function addZgarbi():void
-		{
-			setTimeout(sendData, 5);
-			
-			zgarbiObjects = new Zgarbi();
-			
-			zgarbiObjects.x = _stageWidth / 2;
-			zgarbiObjects.y = _stageHeight / 2;
-			
-			zgarbiObjects.height = _stageHeight / 1.5;
-			zgarbiObjects.scaleX = zgarbiObjects.scaleY;
-			
-			addChild(zgarbiObjects);
-			zgarbi = zgarbiObjects.zgarbi;
-			textFrame = zgarbiObjects.textFrame;
-			
-			zgarbi.alpha = 0;
-			textFrame.alpha = 0;
-			
-			animZgarbi();
-		}
+		//private function addZgarbi():void
+		//{
+			//setTimeout(sendData, 5);
+			//
+			//zgarbiObjects = new Zgarbi();
+			//
+			//zgarbiObjects.x = _stageWidth / 2;
+			//zgarbiObjects.y = _stageHeight / 2;
+			//
+			//zgarbiObjects.height = _stageHeight / 1.5;
+			//zgarbiObjects.scaleX = zgarbiObjects.scaleY;
+			//
+			//addChild(zgarbiObjects);
+			//zgarbi = zgarbiObjects.zgarbi;
+			//textFrame = zgarbiObjects.textFrame;
+			//
+			//zgarbi.alpha = 0;
+			//textFrame.alpha = 0;
+			//
+			//animZgarbi();
+		//}
+		//
+		//private function sendData():void
+		//{
+			//dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleFalse"));
+		//}
+		//
+		//private function animZgarbi():void
+		//{
+			//TweenMax.fromTo(zgarbi, 1, {x: zgarbi.x, y: (2 * _stageHeight)}, {x: zgarbi.x, y: zgarbi.y, alpha: 1, onComplete: addText});
+		//}
+		//
+		//private function addText():void
+		//{
+			//soundControl1 = new SoundControl();
+			//addChild(soundControl1);
+			//soundControl1.loadSound("38.mp3", 1);
+			//soundControl1.soundPlay();
+			//
+			//TweenMax.to(textFrame, 1, {alpha: 1, onComplete: timerFunc});
+		//}
 		
-		private function sendData():void
-		{
-			dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleFalse"));
-		}
-		
-		private function animZgarbi():void
-		{
-			TweenMax.fromTo(zgarbi, 1, {x: zgarbi.x, y: (2 * _stageHeight)}, {x: zgarbi.x, y: zgarbi.y, alpha: 1, onComplete: addText});
-		}
-		
-		private function addText():void
-		{
-			soundControl1 = new SoundControl();
-			addChild(soundControl1);
-			soundControl1.loadSound("37.mp3", 1);
-			soundControl1.soundPlay();
-			
-			TweenMax.to(textFrame, 1, {alpha: 1, onComplete: timerFunc});
-		}
-		
-		private function timerFunc():void
-		{
-			setTimeout(addTask, 2000);
-		}
+		//private function timerFunc():void
+		//{
+			//setTimeout(addTask, 2000);
+		//}
 		
 		private function addTask():void
 		{
-			removeChild(zgarbiObjects);
-			zgarbiObjects = null;
-			
+			//removeChild(zgarbiObjects);
+			//zgarbiObjects = null;
+			dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleTrue"));
 			mainObjects = new MainObjects();
 			
 			mainObjects.x = _stageWidth / 2;
 			mainObjects.y = _stageHeight / 2;
 			
-			mainObjects.height = _stageHeight / 1.4;
+			mainObjects.height = _stageHeight / 1.2;
 			mainObjects.scaleX = mainObjects.scaleY;
 			
 			mainObjects.alpha = 0;
 			addChild(mainObjects);
 			
 			TweenMax.to(mainObjects, 1, {alpha: 1});
-			
-			dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleTrue"));
 			
 			timerC = new TimerClass();
 			
