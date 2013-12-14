@@ -25,20 +25,26 @@
 		
 		private function Destroy(e:Event):void
 		{
-			removeEventListener(Event.REMOVED_FROM_STAGE, Destroy);
-			earthAndMoon.moon1.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
-			earthAndMoon.moon1.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
-			earthAndMoon.moon2.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
-			earthAndMoon.moon2.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
-			earthAndMoon.moon3.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
-			earthAndMoon.moon3.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
-			earthAndMoon.moon4.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
-			earthAndMoon.moon4.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
-			///if (earthAndMoon)
-			///{
-				///removeChild(earthAndMoon);
-				///earthAndMoon = null;
-			///}
+			try
+			{
+				removeEventListener(Event.REMOVED_FROM_STAGE, Destroy);
+				earthAndMoon.moon1.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
+				earthAndMoon.moon1.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
+				earthAndMoon.moon2.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
+				earthAndMoon.moon2.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
+				earthAndMoon.moon3.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
+				earthAndMoon.moon3.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
+				earthAndMoon.moon4.removeEventListener(MouseEvent.MOUSE_DOWN, startDragHandler)
+				earthAndMoon.moon4.removeEventListener(MouseEvent.MOUSE_UP, stopDragHandler)
+				if (earthAndMoon)
+				{
+					removeChild(earthAndMoon);
+					earthAndMoon = null;
+				}
+			}
+			catch (e:Error)
+			{
+			}
 		}
 		
 		private function init(e:Event):void
@@ -74,7 +80,7 @@
 				switch (e.currentTarget.name)
 				{
 					case "moon1": 
-						earthAndMoon.moon1.x = 79.6
+						earthAndMoon.moon1.x = 74.7
 						earthAndMoon.moon1.y = 1.75
 						earthAndMoon.moon1.stopDrag();
 						earthAndMoon.moon1.mouseEnabled = false;
@@ -82,7 +88,7 @@
 						TheEnd();
 						break;
 					case "moon2": 
-						earthAndMoon.moon2.x = -66.8
+						earthAndMoon.moon2.x = -86
 						earthAndMoon.moon2.y = 1.75
 						earthAndMoon.moon2.stopDrag();
 						earthAndMoon.moon2.mouseEnabled = false;
@@ -90,7 +96,7 @@
 						TheEnd();
 						break;
 					case "moon3": 
-						earthAndMoon.moon3.x = -211.75
+						earthAndMoon.moon3.x = -245.7
 						earthAndMoon.moon3.y = 1.75
 						earthAndMoon.moon3.stopDrag();
 						earthAndMoon.moon3.mouseEnabled = false;
@@ -98,7 +104,7 @@
 						TheEnd();
 						break;
 					case "moon4": 
-						earthAndMoon.moon4.x = -356.15
+						earthAndMoon.moon4.x = -407.4
 						earthAndMoon.moon4.y = 1.75
 						earthAndMoon.moon4.stopDrag();
 						earthAndMoon.moon4.mouseEnabled = false;

@@ -21,6 +21,7 @@
 		private var bool1:Boolean = false;
 		private var bool2:Boolean = false;
 		private var soundControl1:SoundControl;
+		private var colorTrans_Mc:MovieClip
 		
 		
 		private var old_X:Number;
@@ -71,6 +72,7 @@
 			earthColor.scaleX = earthColor.scaleY;
 			addChild(earthColor);
 			//#00558C wather // #E6BB57 earthcolor;
+			colorTrans_Mc = new ColortTrans();
 			
 			earthColor.wathercolor.addEventListener(MouseEvent.MOUSE_DOWN, getColor)
 			earthColor.landcolor.addEventListener(MouseEvent.MOUSE_DOWN, getColor)
@@ -85,8 +87,8 @@
 		private function closeBoxFunc(e:MouseEvent):void
 		{
 		
-			earthColor.colortrans.x = old_X;
-			earthColor.colortrans.y = old_Y;
+			earthColor.colortrans.visible = true
+			removeChild(colorTrans_Mc);
 			Mouse.show();
 			stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 		}
@@ -102,8 +104,10 @@
 		{
 			try
 			{
-				earthColor.colortrans.x = ev.stageX - earthColor.width / 2 - earthColor.colortrans.width / 2;
-			earthColor.colortrans.y = ev.stageY - earthColor.height / 2 - earthColor.colortrans.height;
+				earthColor.colortrans.visible = false;
+				addChild(colorTrans_Mc);
+				colorTrans_Mc.x = ev.stageX - colorTrans_Mc.width / 3;
+				colorTrans_Mc.y = ev.stageY - colorTrans_Mc.height / 2.5;
 			}
 			catch (e:Error )
 			{
@@ -177,7 +181,7 @@
 		
 		private function colors():void
 		{
-			earthColor.colortrans.showColor.transform.colorTransform = color;
+			colorTrans_Mc.showColor.transform.colorTransform = color;
 		}
 	}
 
