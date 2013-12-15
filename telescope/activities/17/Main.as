@@ -60,6 +60,10 @@
 				trace("mevida eventi");
 				dispatchEvent(new DataEvent(DataEvent.DATA , false , false, "endOfGame"));
 			}
+			else 
+			{
+				dispatchEvent(new DataEvent(DataEvent.DATA , false , false,e.data));
+			}
 		}
 		
 	}

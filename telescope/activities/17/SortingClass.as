@@ -170,13 +170,13 @@
 			version1 = new SecondVersion();
 			version2 = new ThirdVersion();
 			
-			version0.name = "0";
-			version1.name = "1";
-			version2.name = "2";
+			version0.name = "2";
+			version1.name = "0";
+			version2.name = "1";
 			
 			//////////////
 			
-			versionsArray = [version0, version1, version2];
+			versionsArray = [version1,version2,version0 ];
 			
 			allText = new AllText();
 			allText.x = _stageWidth / 2;
