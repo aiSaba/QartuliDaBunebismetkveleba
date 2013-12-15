@@ -71,9 +71,15 @@
 			button.sound.addEventListener(MouseEvent.MOUSE_DOWN, soundListener);
 			button.pause.addEventListener(MouseEvent.MOUSE_DOWN, pauseListener);
 			button.home.addEventListener(MouseEvent.MOUSE_DOWN, homeListener);
+			button.all.addEventListener(MouseEvent.MOUSE_DOWN, allListener);
 			button.exit.addEventListener(MouseEvent.MOUSE_DOWN, exitListener);
 			button.soundOff.addEventListener(MouseEvent.MOUSE_DOWN, soundOffListener);
 			trace(button.soundOff);
+		}
+		
+		private function allListener(e:MouseEvent):void 
+		{
+			dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "all"));
 		}
 		
 		private function exitListener(ev:MouseEvent):void
