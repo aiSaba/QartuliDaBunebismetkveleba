@@ -55,11 +55,12 @@
 			this._stageWidth = _stageWidth;
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
-			addEventListener(Event.REMOVED_FROM_STAGE, destroy);
+			///addEventListener(Event.REMOVED_FROM_STAGE, destroy);
 		}
 		
 		private function destroy(event:Event):void
 		{
+			
 			removeEventListener(Event.REMOVED_FROM_STAGE, destroy);
 			TweenMax.killTweensOf(zgarbi);
 			TweenMax.killTweensOf(textFrame);
@@ -420,7 +421,7 @@
 				version0 = null;
 				version1 = null;
 				version2 = null;
-				destroy(null);
+				////destroy(null);
 			}
 			catch (err:Error)
 			{
