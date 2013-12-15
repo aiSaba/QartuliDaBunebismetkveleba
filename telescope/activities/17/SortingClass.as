@@ -188,6 +188,7 @@
 			//startTask();
 			
 			
+			
 			soundControl1 = new SoundControl();
 			addChild(soundControl1);
 			TweenMax.to(allText.text1, 1, {tint: 0xff0000});
@@ -308,7 +309,7 @@
 		//
 		private function addShuffledArray():void
 		{
-			
+			dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleTrue"));
 			shuffledArray = shuffle(versionsArray);
 			
 			//ShuffleArray();
