@@ -187,7 +187,7 @@
 			addChild(allText);
 			//startTask();
 			
-			return
+			
 			soundControl1 = new SoundControl();
 			addChild(soundControl1);
 			TweenMax.to(allText.text1, 1, {tint: 0xff0000});
