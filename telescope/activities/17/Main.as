@@ -1,4 +1,4 @@
-﻿package
+﻿package 
 {
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
@@ -13,66 +13,55 @@
 	 * ...
 	 * @author ... nika
 	 */
-	public class Main extends MovieClip
+	public class  Main extends MovieClip
 	{
 		
 		private var _stageHeight;
 		private var _stageWidth;
 		
-	
+		private var controllerClass:Controller;
 		private var sortingClass:SortingClass;
+		
+		
 		
 		public function Main():void
 		{
 			if (stage)
 			{
 				stage.scaleMode = StageScaleMode.NO_SCALE;
-				stage.align = StageAlign.TOP_LEFT;
+			    stage.align = StageAlign.TOP_LEFT;
 			}
 			
-			addEventListener(Event.ADDED_TO_STAGE, init);
+			addEventListener(Event.ADDED_TO_STAGE, init);		
 		}
-		
 		private function init(event:Event):void
-		{
+	    {
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			_stageHeight = stage.stageHeight;
 			_stageWidth = stage.stageWidth;
 			
-			callSortingClass();
-		
+		    callSortingClass();
+			
 		}
 		
-		private function callSortingClass():void
-		{
+		private function callSortingClass():void 
+		{			
 			sortingClass = new SortingClass(_stageHeight, _stageWidth);
 			addChild(sortingClass);
 			
-			sortingClass.addEventListener(DataEvent.DATA, endOfGame);
+			sortingClass.addEventListener(DataEvent.DATA , endOfGame);
 		}
 		
-		private function endOfGame(e:DataEvent):void
+		private function endOfGame(e:DataEvent):void 
 		{
 			if (e.data.indexOf("endOfGame") != -1)
 			{
-				var qula:String = e.data as String;
-				
-				dispatchEvent(new DataEvent(DataEvent.DATA, false, false, qula));
 				trace("mevida eventi");
-			}
-			if (e.data == "ButtonVisibleFalse")
-			{
-				trace("visible false");
-				dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleFalse"));
-			}
-			if (e.data == "ButtonVisibleTrue")
-			{
-				trace("visible true");
-				dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "ButtonVisibleTrue"));
+				dispatchEvent(new DataEvent(DataEvent.DATA , false , false, "endOfGame"));
 			}
 		}
-	
+		
 	}
-
+	
 }

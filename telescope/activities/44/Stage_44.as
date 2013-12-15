@@ -56,17 +56,17 @@
 			newFlag = new CopyFlag();
 			addChild(newFlag)
 			newFlag.name = ("flag" + i.toString());
-			trace(newFlag.name);
+			
 			i++;
-			trace(newFlag);
+			
 			flagArray.push(newFlag);
 			
-			trace(flagArray);
+			
 			
 			newFlag.x = mouseX;
 			
 			newFlag.y = mouseY;
-			TweenLite.to(newFlag, 0.0001, {x: mouseX, y: mouseY + 15, scaleX: 0.5, scaleY: 0.5});
+			TweenLite.to(newFlag, 0, {x: mouseX, y: mouseY + 15, scaleX: 0.5, scaleY: 0.5});
 			
 			newFlag.addEventListener(MouseEvent.MOUSE_OVER, DragFunc);
 			newFlag.addEventListener(MouseEvent.MOUSE_UP, StopDragFunc);
@@ -121,8 +121,7 @@
 		{
 			flags = new Flags();
 			addChild(flags);
-			
-			
+			flags.nxt.buttonMode= true
 			flags.nxt.addEventListener(MouseEvent.MOUSE_DOWN, exit);
 			
 			flags.x = _stageWidth / 2;

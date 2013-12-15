@@ -15,10 +15,13 @@
 	 */
 	public class  Main extends MovieClip
 	{
+		
 		private var _stageHeight;
 		private var _stageWidth;
 		
-		private var mainGame:MainGame;
+		private var mainTask:MainTask;
+		
+		
 		
 		public function Main():void
 		{
@@ -37,25 +40,24 @@
 			_stageHeight = stage.stageHeight;
 			_stageWidth = stage.stageWidth;
 			
-		    callmainGame();
+		    callSortingClass();
 			
 		}
 		
-		private function callmainGame():void 
+		private function callSortingClass():void 
 		{			
-			mainGame = new MainGame(_stageHeight, _stageWidth);
-			addChild(mainGame);
+			mainTask = new MainTask(_stageHeight, _stageWidth);
+			addChild(mainTask);
 			
-			mainGame.addEventListener(DataEvent.DATA , endOfGame);
+			mainTask.addEventListener(DataEvent.DATA , endOfGame);
 		}
 		
 		private function endOfGame(e:DataEvent):void 
 		{
 			if (e.data.indexOf("endOfGame") != -1)
 			{
-				var qula:String = e.data.split("|")[1];
-				dispatchEvent(new DataEvent(DataEvent.DATA, false, false, "endOfGame|" + qula));
 				trace("mevida eventi");
+				dispatchEvent(new DataEvent(DataEvent.DATA , false , false, "endOfGame"));
 			}
 			if (e.data == "ButtonVisibleFalse")
 			{
