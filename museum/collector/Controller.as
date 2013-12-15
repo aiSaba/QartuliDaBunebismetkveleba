@@ -42,9 +42,11 @@ package
 		private var allScore:int;
 		
 		private var pauseMc:MovieClip;
+		private var allSheet:MovieClip;
 		
 		public function Controller(stageW:Number = 1024, stageH:Number = 768)
 		{
+			
 			this.stageH = stageH;
 			this.stageW = stageW;
 			
@@ -72,9 +74,9 @@ package
 			button.visible = false;
 			soundOn = true;
 			
-			swfArray = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+			swfArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 			
-			swfIndex = Settings.POSITION+1;
+			swfIndex = Settings.POSITION + 1;
 			allScore = Settings.SCORE;
 			loadSwf();
 		}
@@ -89,8 +91,7 @@ package
 			context.applicationDomain = new ApplicationDomain();
 			context.allowLoadBytesCodeExecution = true;
 			
-			
-			var request:URLRequest = new URLRequest("swfs/" + swfArray[swfIndex].toString()+".swf");
+			var request:URLRequest = new URLRequest("swfs/" + swfArray[swfIndex].toString() + ".swf");
 			
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCompleteHandler);
 			loader.load(request, context);
@@ -131,7 +132,7 @@ package
 				if (qula)
 				{
 					allScore += parseInt(qula);
-				} 
+				}
 				else
 				{
 					//
@@ -139,16 +140,17 @@ package
 				
 				update = new Update();
 				update.addEventListener(CustomEvent.DATA, updateListener);
-				update.letsDo(allScore, (swfIndex));
-				swfIndex ++;
-				loadSwf();
 				
+				update.letsDo(allScore, (swfIndex));
+				swfIndex++;
+				loadSwf();
 				
 			}
 			if (e.data == "The End")
 			{
-
+				
 				loader.unloadAndStop();
+				
 				var myTextFormat:TextFormat = new TextFormat();
 				myTextFormat.size = 50;
 				myTextFormat.color = 0xFFFFFF;
@@ -182,10 +184,9 @@ package
 			{
 				removeChild(loadedContent);
 				loader.unloadAndStop();
+				
 				button.visible = false;
 				loadSwf();
-				
-				//button.removeEventListener(DataEvent.DATA, buttonsListener);
 			}
 			
 			if (e.data == "sound")
@@ -220,8 +221,6 @@ package
 			if (e.data == "home")
 			{
 				button.removeEventListener(DataEvent.DATA, buttonsListener);
-				
-				
 				removeChild(button);
 				removeChild(loadedContent);
 				loader.unloadAndStop();
@@ -234,8 +233,81 @@ package
 				button.removeEventListener(DataEvent.DATA, buttonsListener);
 				
 			}
+			if (e.data == "all")
+			{
+				showAllLevels();
+			}
 		
 		} ///end buttonListernr
+		
+		private function showAllLevels():void
+		{
+			
+			allSheet = new AllSheet() as MovieClip
+			allSheet.height = stageH / 1.2;
+			allSheet.scaleX = allSheet.scaleY;
+			
+			button.visible = false;
+			
+			allSheet.x = (stageW - allSheet.width) / 2;
+			allSheet.y = (stageH - allSheet.height) / 2;
+			
+			addChild(allSheet);
+			
+			allSheet.close_mc.addEventListener(MouseEvent.MOUSE_DOWN, closeSheet);
+			
+			var item:MovieClip;
+			for (var i:int = 1; i <= 16; i++)
+			{
+				item = allSheet.getChildByName("mc_" + i.toString()) as MovieClip;
+				item.num_txt.text = i.toString();
+				item.addEventListener(MouseEvent.MOUSE_DOWN, gameLevelAction, false, 0, true);
+			}
+		}
+		
+		private function closeSheet(e:MouseEvent):void
+		{
+			button.visible = true;
+			var item:MovieClip;
+			for (var i:int = 1; i <= 16; i++)
+			{
+				item = allSheet.getChildByName("mc_" + i.toString()) as MovieClip;
+				item.num_txt.text = i.toString();
+				item.removeEventListener(MouseEvent.MOUSE_DOWN, gameLevelAction);
+			}
+			allSheet.close_mc.removeEventListener(MouseEvent.MOUSE_DOWN, closeSheet);
+			removeChild(allSheet);
+			allSheet = null;
+		
+		}
+		
+		private function gameLevelAction(e:MouseEvent):void
+		{
+			button.visible = true;
+			var item:MovieClip;
+			for (var i:int = 1; i <= 16; i++)
+			{
+				item = allSheet.getChildByName("mc_" + i.toString()) as MovieClip;
+				item.num_txt.text = i.toString();
+				item.removeEventListener(MouseEvent.MOUSE_DOWN, gameLevelAction);
+			}
+			
+			removeChild(allSheet);
+			allSheet = null;
+			swfIndex = Number(e.currentTarget.name.substr(3));
+			button.visible = false;
+			
+			try
+			{
+				removeChild(loadedContent);
+				loader.unloadAndStop();
+				loadSwf();
+			}
+			catch (e:Error)
+			{
+				
+			}
+		}
 		
 		private function resumeFunc(ev:MouseEvent):void
 		{

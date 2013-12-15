@@ -163,11 +163,6 @@
 				startApp(false);
 			}
 		}
-		
-		
-		
-		
-	
 	}
 
 }
